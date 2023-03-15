@@ -66,36 +66,19 @@ public class SudokuGUI extends JFrame implements ActionListener {
     
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == checkButton) {
+        if (e.getSource() == checkButton) {            
             ArrayList<String> errorMessages = new ArrayList<>();
     
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    if (sudokuCells[row][col].getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Please fill in all cells.", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    } else if(sudokuCells[row][col].isEditable()){
-                        int cellValue = Integer.parseInt(sudokuCells[row][col].getText());
-                        boolean isInputValid = sudokuBoard.isInputValid(row, col, cellValue);
-                        if (!isInputValid) {
-                            errorMessages.add("Invalid input at row " + (row + 1) + ", column " + (col + 1) + ".");
-                        }
-                    }
+                    sudokuBoard.getCell(row,col).setValue(Integer.parseInt(sudokuCells[row][col].getText()));
                 }
             }
-    
-            if (errorMessages.isEmpty()) {
-                if (sudokuBoard.isBoardValid()) {
-                    JOptionPane.showMessageDialog(this, "Sudoku is valid!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Sudoku is invalid.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JTextArea errorMessageTextArea = new JTextArea(String.join("\n", errorMessages));
-                errorMessageTextArea.setEditable(false);
-                JScrollPane scrollPane = new JScrollPane(errorMessageTextArea);
-                scrollPane.setPreferredSize(new Dimension(350, 150));
-                JOptionPane.showMessageDialog(this, scrollPane, "Error", JOptionPane.ERROR_MESSAGE);
+            if (sudokuBoard.isBoardValid()) {
+                JOptionPane.showMessageDialog(this, "Sudoku is valid!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } 
+            else {
+                JOptionPane.showMessageDialog(this, "Sudoku is invalid.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         // Reset the Board
         } else if (e.getSource() == resetButton) {
