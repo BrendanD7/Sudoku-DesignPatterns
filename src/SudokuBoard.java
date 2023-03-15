@@ -1,12 +1,13 @@
 import java.util.Random;
 
 public class SudokuBoard {
+    private static SudokuBoard instance = null;
     private Cell[][] board;
     private int size;
     private int cellSize;
 
     /** Constructor to build a sudoku board */
-    public SudokuBoard(int size) {
+    private SudokuBoard(int size) {
         // Board size
         board = new Cell[size][size];
         // Size for loops
@@ -14,6 +15,13 @@ public class SudokuBoard {
         this.cellSize = (int) Math.sqrt(size);
         // Build the board
         buildBoard();
+    }
+
+    public static SudokuBoard getInstance(int size){
+        if(instance == null){
+            instance = new SudokuBoard(size);
+        }
+        return instance;
     }
 
     /** Builds a sudoku board */
@@ -32,6 +40,7 @@ public class SudokuBoard {
 
     /** Uses backtracking to fill the board */
     private boolean fillBoard(int row, int col) {
+        CellFactory factory = new SudokuCellFactory();
         // If we have filled the entire board, we are done
         if (row == size) {
             return true;
@@ -49,7 +58,7 @@ public class SudokuBoard {
         for (int i = 1; i <= size; i++) {
             int value = rand.nextInt(size) + 1;
             if (isInputValid(row, col, value)) {
-                board[row][col] = new Cell(value);
+                board[row][col] = factory.createCell(value);
                 if (fillBoard(row, col + 1)) {
                     return true;
                 }

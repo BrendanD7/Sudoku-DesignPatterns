@@ -14,7 +14,7 @@ public class SudokuGUI extends JFrame implements ActionListener {
         super("Sudoku");
     
         // Create sudoku board
-        sudokuBoard = new SudokuBoard(boardSize);
+        sudokuBoard =  SudokuBoard.getInstance(boardSize);
     
         // Create sudoku panel
         int subgridSize = (int) Math.sqrt(boardSize);
