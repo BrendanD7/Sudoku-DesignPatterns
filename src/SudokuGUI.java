@@ -10,12 +10,13 @@ public class SudokuGUI extends JFrame implements ActionListener {
     private JTextField[][] sudokuCells;
     private SudokuBoard sudokuBoard;
 
-    public SudokuGUI(int boardSize) {
+    public SudokuGUI(String difficulty) {
         super("Sudoku");
-    
+        
         // Create sudoku board
-        sudokuBoard =  SudokuBoard.getInstance(boardSize);
-    
+        SudokuFactory factory = SudokuFactory.getInstance();
+        sudokuBoard =  factory.buildBoard(difficulty);
+        int boardSize = sudokuBoard.getSize();
         // Create sudoku panel
         int subgridSize = (int) Math.sqrt(boardSize);
         sudokuPanel = new JPanel();
@@ -66,9 +67,7 @@ public class SudokuGUI extends JFrame implements ActionListener {
     
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == checkButton) {            
-            ArrayList<String> errorMessages = new ArrayList<>();
-    
+        if (e.getSource() == checkButton) {           
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
                     sudokuBoard.getCell(row,col).setValue(Integer.parseInt(sudokuCells[row][col].getText()));
@@ -99,10 +98,10 @@ public class SudokuGUI extends JFrame implements ActionListener {
     
 
     public static void main(String[] args) {
-        System.out.println("Board Size: ");
+        System.out.println("Board difficulty (Easy, Medium, Hard): ");
         Scanner scan = new Scanner(System.in);
-        int size = scan.nextInt();
+        String difficulty = scan.next();
         scan.close();
-        new SudokuGUI(size);
+        new SudokuGUI(difficulty);
     }
 }
