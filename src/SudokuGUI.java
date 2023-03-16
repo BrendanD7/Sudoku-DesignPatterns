@@ -6,13 +6,14 @@ import java.util.*;
 public class SudokuGUI extends JFrame implements ActionListener {
 
     private JPanel sudokuPanel, buttonPanel;
-    private JButton checkButton, resetButton;
+    private JButton checkButton, resetButton, restartButton;
     private JTextField[][] sudokuCells;
     private SudokuBoard sudokuBoard;
+    private static String difficulty;
+    private static int boardSize;
 
     public SudokuGUI(String difficulty, int boardSize) {
-        super("Sudoku");
-        
+        super("Sudoku Game");
         // Create sudoku board
         SudokuFactory factory = SudokuFactory.getInstance();
         sudokuBoard =  factory.buildBoard(difficulty, boardSize);
@@ -48,12 +49,15 @@ public class SudokuGUI extends JFrame implements ActionListener {
         
         // create button panel
         buttonPanel = new JPanel();
-        checkButton = new JButton("Check");
+        checkButton = new JButton("Check Board");
         checkButton.addActionListener(this);
-        resetButton = new JButton("Reset");
+        resetButton = new JButton("Reset Selections");
         resetButton.addActionListener(this);
+        restartButton = new JButton("New Game");
+        restartButton.addActionListener(this);
         buttonPanel.add(checkButton);
         buttonPanel.add(resetButton);
+        buttonPanel.add(restartButton);
     
         // add panels to frame
         add(sudokuPanel, BorderLayout.CENTER);
@@ -90,27 +94,98 @@ public class SudokuGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == resetButton) {
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    int cellValue = sudokuBoard.getCellValue(row, col);
-                    if (cellValue == 0) {
+                    if (sudokuCells[row][col].isEditable()) {
                         sudokuCells[row][col].setText("");
-                        sudokuCells[row][col].setEditable(true);
-                    } else {
-                        sudokuCells[row][col].setText("" + cellValue);
-                        sudokuCells[row][col].setEditable(false);
-                    }
+                    } 
                 }
             }
         }
+        else if(e.getSource() == restartButton){
+            dispose();
+            openScreen();
+        }
+    }
+    
+    public static void openScreen() {
+        JFrame frame = new JFrame("Sudoku");
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel checkBoxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel sizeBoxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JCheckBox easyBox = new JCheckBox("Easy");
+        JCheckBox mediumBox = new JCheckBox("Medium");
+        JCheckBox hardBox = new JCheckBox("Hard");
+    
+        JCheckBox smallBox = new JCheckBox("4x4");
+        JCheckBox middleBox = new JCheckBox("9x9");
+        JCheckBox largeBox = new JCheckBox("16x16");
+        JButton startButton = new JButton("Start Game");
+    
+        ButtonGroup difficultyGroup = new ButtonGroup();
+        difficultyGroup.add(easyBox);
+        difficultyGroup.add(mediumBox);
+        difficultyGroup.add(hardBox);
+    
+        ButtonGroup sizeGroup = new ButtonGroup();
+        sizeGroup.add(smallBox);
+        sizeGroup.add(middleBox);
+        sizeGroup.add(largeBox);
+    
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == startButton){
+                    if(easyBox.isSelected()){
+                        difficulty = "Easy";
+                    }
+                    else if(mediumBox.isSelected()){
+                        difficulty = "Medium";
+                    }
+                    else if(hardBox.isSelected()){
+                        difficulty = "Hard";
+                    }
+                    else{
+                        return;
+                    }
+                    if(smallBox.isSelected()){
+                        boardSize = 4;
+                    }
+                    else if(middleBox.isSelected()){
+                        boardSize = 9;
+                    }
+                    else if(largeBox.isSelected()){
+                        boardSize = 16;
+                    }
+                    else{
+                        return;
+                    }
+                    new SudokuGUI(difficulty, boardSize);
+                    frame.dispose();
+                }
+            }
+        });
+        checkBoxPanel.add(easyBox);
+        checkBoxPanel.add(mediumBox);
+        checkBoxPanel.add(hardBox);
+        panel.add(checkBoxPanel, BorderLayout.NORTH);
+    
+        sizeBoxPanel.add(smallBox);
+        sizeBoxPanel.add(middleBox);
+        sizeBoxPanel.add(largeBox);
+        panel.add(sizeBoxPanel, BorderLayout.CENTER);
+    
+        JPanel startButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        startButtonPanel.add(startButton);
+        panel.add(startButtonPanel, BorderLayout.SOUTH);
+    
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(225, 150);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
     
 
     public static void main(String[] args) {
-        System.out.println("Board difficulty (Easy, Medium, Hard): ");
-        Scanner scan = new Scanner(System.in);
-        String difficulty = scan.next();
-        System.out.println("Board Size: ");
-        int size = scan.nextInt();
-        scan.close();
-        new SudokuGUI(difficulty, size);
+        openScreen();
     }
 }
