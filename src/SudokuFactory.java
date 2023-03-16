@@ -9,15 +9,15 @@ public class SudokuFactory {
         return instance;
     }
 
-    public SudokuBoard buildBoard(String difficulty){
+    public SudokuBoard buildBoard(String difficulty, int size){
         if(difficulty.equals("Easy")){
-            return new EasySudokuBoard();
+            return new EasySudokuBoard(size);
         }
         else if(difficulty.equals("Medium")){
-            return new MediumSudokuBoard();
+            return new MediumSudokuBoard(size);
         }
         else if(difficulty.equals("Hard")){
-            return new HardSudokuBoard();
+            return new HardSudokuBoard(size);
         }
         else{
             return null;

@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class EasySudokuBoard implements SudokuBoard{
     private Cell[][] board;
@@ -6,8 +6,8 @@ public class EasySudokuBoard implements SudokuBoard{
     private int cellSize;
 
     /** Constructor to build a sudoku board */
-    public EasySudokuBoard() {
-        this.size = 4;
+    public EasySudokuBoard(int size) {
+        this.size = size;
         // Board size
         board = new Cell[size][size];
         this.cellSize = (int) Math.sqrt(size);
@@ -31,18 +31,21 @@ public class EasySudokuBoard implements SudokuBoard{
 
     /** Uses backtracking to fill the board */
     private boolean fillBoard(int row, int col) {
-        // If we have filled the entire board, we are done
+        // Base Case, Board Filled
         if (row == size) {
             return true;
         }
+
         // If we have reached the end of a row, move to the next row
         if (col == size) {
             return fillBoard(row + 1, 0);
         }
+
         // If the current cell is already filled, move to the next cell
         if (board[row][col].getValue() != 0) {
             return fillBoard(row, col + 1);
         }
+
         // Try values from 1 to size in the current cell
         Random rand = new Random();
         for (int i = 1; i <= size; i++) {
@@ -165,12 +168,17 @@ public class EasySudokuBoard implements SudokuBoard{
 
     /** Removes elements from the completed Puzzle */
     private void removeElements(){
-        Random rand = new Random();
+        ArrayList<Cell> cells = new ArrayList<Cell>(size*size);;
         for(int row = 0; row < size; row++){
-            for(int col = 0; col < size; col++){
-                int random = rand.nextInt(10);
-                if(random < 7){board[row][col].setValue(0);}
+            for(int col=0; col < size; col++){
+                cells.add(board[row][col]);
             }
+        }
+        int removeTotal = (int) (size*size * 0.4);
+        Collections.shuffle(cells);
+        for(int i = 0; i < removeTotal; i++){
+            Cell cell = cells.get(i);
+            cell.setValue(0);
         }
     }
 

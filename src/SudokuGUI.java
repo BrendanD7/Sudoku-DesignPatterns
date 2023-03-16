@@ -10,41 +10,42 @@ public class SudokuGUI extends JFrame implements ActionListener {
     private JTextField[][] sudokuCells;
     private SudokuBoard sudokuBoard;
 
-    public SudokuGUI(String difficulty) {
+    public SudokuGUI(String difficulty, int boardSize) {
         super("Sudoku");
         
         // Create sudoku board
         SudokuFactory factory = SudokuFactory.getInstance();
-        sudokuBoard =  factory.buildBoard(difficulty);
-        int boardSize = sudokuBoard.getSize();
+        sudokuBoard =  factory.buildBoard(difficulty, boardSize);
         // Create sudoku panel
         int subgridSize = (int) Math.sqrt(boardSize);
         sudokuPanel = new JPanel();
-        sudokuPanel.setLayout(new GridLayout(subgridSize, subgridSize, 2, 2));
+        sudokuPanel.setLayout(new GridLayout(subgridSize, subgridSize));
         sudokuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         sudokuCells = new JTextField[boardSize][boardSize];
-        for (int i = 0; i < boardSize; i++) {
-            if (i % subgridSize == 0) { // Create new subgrid panel for every subgrid
+        for (int i = 0; i < subgridSize; i++) {
+            for (int j = 0; j < subgridSize; j++) {
                 JPanel subgrid = new JPanel(new GridLayout(subgridSize, subgridSize, 2, 2));
                 subgrid.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 sudokuPanel.add(subgrid);
-            }
-            for (int j = 0; j < boardSize; j++) {
-                JTextField cell = new JTextField(1);
-                cell.setHorizontalAlignment(JTextField.CENTER);
-                cell.setFont(new Font("Arial", Font.PLAIN, 24));
-                int cellValue = sudokuBoard.getCellValue(i, j);
-                if (cellValue != 0) {
-                    cell.setText("" + cellValue);
-                    cell.setEditable(false);
+                for (int k = 0; k < subgridSize; k++) {
+                    for (int l = 0; l < subgridSize; l++) {
+                        int row = i * subgridSize + k;
+                        int col = j * subgridSize + l;
+                        JTextField cell = new JTextField(1);
+                        cell.setHorizontalAlignment(JTextField.CENTER);
+                        cell.setFont(new Font("Arial", Font.PLAIN, 24));
+                        int cellValue = sudokuBoard.getCellValue(row, col);
+                        if (cellValue != 0) {
+                            cell.setText("" + cellValue);
+                            cell.setEditable(false);
+                        }
+                        sudokuCells[row][col] = cell;
+                        subgrid.add(cell); // Add cell to current subgrid panel
+                    }
                 }
-                sudokuCells[i][j] = cell;
-                ((JPanel) sudokuPanel.getComponent(i/subgridSize)).add(cell); // Add cell to current subgrid panel
-
             }
         }
         
-    
         // create button panel
         buttonPanel = new JPanel();
         checkButton = new JButton("Check");
@@ -107,7 +108,9 @@ public class SudokuGUI extends JFrame implements ActionListener {
         System.out.println("Board difficulty (Easy, Medium, Hard): ");
         Scanner scan = new Scanner(System.in);
         String difficulty = scan.next();
+        System.out.println("Board Size: ");
+        int size = scan.nextInt();
         scan.close();
-        new SudokuGUI(difficulty);
+        new SudokuGUI(difficulty, size);
     }
 }

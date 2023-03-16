@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class MediumSudokuBoard implements SudokuBoard{
     private Cell[][] board;
@@ -6,8 +6,8 @@ public class MediumSudokuBoard implements SudokuBoard{
     private int cellSize;
 
     /** Constructor to build a sudoku board */
-    public MediumSudokuBoard() {
-        this.size = 9;
+    public MediumSudokuBoard(int size) {
+        this.size = size;
         // Board size
         board = new Cell[size][size];
         this.cellSize = (int) Math.sqrt(size);
@@ -165,12 +165,17 @@ public class MediumSudokuBoard implements SudokuBoard{
 
     /** Removes elements from the completed Puzzle */
     private void removeElements(){
-        Random rand = new Random();
+        ArrayList<Cell> cells = new ArrayList<Cell>(size*size);;
         for(int row = 0; row < size; row++){
-            for(int col = 0; col < size; col++){
-                int random = rand.nextInt(10);
-                if(random < 7){board[row][col].setValue(0);}
+            for(int col=0; col < size; col++){
+                cells.add(board[row][col]);
             }
+        }
+        int removeTotal = (int) (size*size * 0.55);
+        Collections.shuffle(cells);
+        for(int i = 0; i < removeTotal; i++){
+            Cell cell = cells.get(i);
+            cell.setValue(0);
         }
     }
 

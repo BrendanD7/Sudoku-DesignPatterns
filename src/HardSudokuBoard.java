@@ -1,17 +1,21 @@
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class HardSudokuBoard implements SudokuBoard{
     private Cell[][] board;
     private int size;
     private int cellSize;
+    
 
     /** Constructor to build a sudoku board */
-    public HardSudokuBoard() {
-        this.size = 16;
+    public HardSudokuBoard(int size) {
+        this.size = size;
         // Board size
         board = new Cell[size][size];
         // Size for loops
-        this.cellSize = 4;
+        this.cellSize = (int) Math.sqrt(size);
+
         // Build the board
         buildBoard();
     }
@@ -166,12 +170,17 @@ public class HardSudokuBoard implements SudokuBoard{
 
     /** Removes elements from the completed Puzzle */
     private void removeElements(){
-        Random rand = new Random();
+        ArrayList<Cell> cells = new ArrayList<Cell>(size*size);;
         for(int row = 0; row < size; row++){
-            for(int col = 0; col < size; col++){
-                int random = rand.nextInt(10);
-                if(random < 7){board[row][col].setValue(0);}
+            for(int col=0; col < size; col++){
+                cells.add(board[row][col]);
             }
+        }
+        int removeTotal = (int) (size*size * 0.7);
+        Collections.shuffle(cells);
+        for(int i = 0; i < removeTotal; i++){
+            Cell cell = cells.get(i);
+            cell.setValue(0);
         }
     }
 
