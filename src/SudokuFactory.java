@@ -9,7 +9,7 @@ public class SudokuFactory {
         return instance;
     }
 
-    public SudokuBoard buildBoard(String difficulty, int size){
+    public SudokuBoard createBoard(String difficulty, int size){
         if(difficulty.equals("Easy")){
             return new EasySudokuBoard(size);
         }
