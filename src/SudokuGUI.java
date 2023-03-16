@@ -70,7 +70,13 @@ public class SudokuGUI extends JFrame implements ActionListener {
         if (e.getSource() == checkButton) {           
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    sudokuBoard.getCell(row,col).setValue(Integer.parseInt(sudokuCells[row][col].getText()));
+                    if(!sudokuCells[row][col].getText().equals("")){
+                        sudokuBoard.getCell(row,col).setValue(Integer.parseInt(sudokuCells[row][col].getText()));
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Please fill in every cell.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                 }
             }
             if (sudokuBoard.isBoardValid()) {
