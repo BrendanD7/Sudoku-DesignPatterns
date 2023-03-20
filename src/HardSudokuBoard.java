@@ -64,37 +64,41 @@ public class HardSudokuBoard implements SudokuBoard{
         return false;
     }
     
-    /** Checks if given row is valid */
-    private boolean isRowValid(int row){
+     /** Checks if given row is valid */
+     private boolean isRowValid(int row){
+        RowIterator rowIt = new RowIterator(row, this);
         boolean[] visited = new boolean[size];
-        for(int col = 0; col < size; col++){
-            int value = board[row][col].getValue();
-            if(value != 0){
-                if(visited[value-1]){
+
+        while (rowIt.hasNext()) {
+            int value = rowIt.next().getValue();
+            if (value != 0) {
+                if (visited[value-1]) {
                     return false;
                 }
-                else{
-                    visited[value-1] = true;
-                }
+
+                visited[value-1] = true;
             }
         }
+
         return true;
     }
     
     /** Checks if given column is valid */
     private boolean isColValid(int col){
+        ColumnIterator colIt = new ColumnIterator(col, this);
         boolean[] visited = new boolean[size];
-        for(int row = 0; row < size; row++){
-            int value = board[row][col].getValue();
-            if(value != 0){
-                if(visited[value-1]){
+
+        while (colIt.hasNext()) {
+            int value = colIt.next().getValue();
+            if (value != 0) {
+                if (visited[value-1]) {
                     return false;
                 }
-                else{
-                    visited[value-1] = true;
-                }
+
+                visited[value-1] = true;
             }
         }
+        
         return true;
     }
     
