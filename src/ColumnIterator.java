@@ -12,6 +12,9 @@ public class ColumnIterator implements Iterator<Cell> {
         this.maxRow = board.getSize();
     }
 
+    /**
+     * Returns true if there are more values in the iterator
+     */
     public boolean hasNext() {
         return curRow < maxRow;
     }

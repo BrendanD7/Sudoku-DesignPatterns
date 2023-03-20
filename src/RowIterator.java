@@ -12,6 +12,9 @@ public class RowIterator implements Iterator<Cell> {
         this.maxCol = board.getSize();
     }
 
+    /**
+     * Returns true if there are more values in the iterator
+     */
     public boolean hasNext() {
         return curCol < maxCol;
     }
