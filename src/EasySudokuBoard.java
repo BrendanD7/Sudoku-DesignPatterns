@@ -4,6 +4,7 @@ public class EasySudokuBoard implements SudokuBoard{
     private Cell[][] board;
     private int size;
     private int cellSize;
+    private Memento initialState;
 
     /** Constructor to build a sudoku board */
     public EasySudokuBoard(int size) {
@@ -180,6 +181,7 @@ public class EasySudokuBoard implements SudokuBoard{
             Cell cell = cells.get(i);
             cell.setValue(0);
         }
+        createSnapshot();
     }
 
     /** Get Size of Board */
@@ -200,5 +202,13 @@ public class EasySudokuBoard implements SudokuBoard{
     //* Get Specific Cells Values */
     public int getCellValue(int row, int col){
         return board[row][col].getValue();
+    }
+
+    public void createSnapshot(){
+        this.initialState = new Memento(board);
+    }
+
+    public void restore(){
+        board = this.initialState.getMemento();
     }
 }
