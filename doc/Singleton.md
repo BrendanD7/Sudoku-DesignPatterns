@@ -10,7 +10,7 @@ In the factory class there is an instance, as well as a get instance method. The
 As such, the factory is accessed by the getInstance method in the client program.
 
 ## Why have we used it?
-We have used the singleton to create the factories as we want to ensure that object creation is consistent. If there were several factories created, the boards could be created incorrectly. Having blobal access to the factory also makes it easier to manage object creation within the game.
+We have used the singleton to create the factories as we want to ensure that object creation is consistent. If there were several factories created, the boards could be created incorrectly. Having global access to the factory also makes it easier to manage object creation within the game.
 
 # UML
 ![Singleton UML](../data/Singleton-UML.png)
