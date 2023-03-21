@@ -1,10 +1,11 @@
 import java.util.*;
 
 public class EasySudokuBoard implements SudokuBoard{
+    private Cell[] prototypes;
     private Cell[][] board;
     private int size;
     private int cellSize;
-    private Memento initialState;
+    private BoardMemento initialState;
 
     /** Constructor to build a sudoku board */
     public EasySudokuBoard(int size) {
@@ -21,7 +22,7 @@ public class EasySudokuBoard implements SudokuBoard{
         // Initialize board to 0s
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                board[row][col] = new Cell(0);
+                board[row][col] = getPrototype(0);
             }
         }
         // Use backtracking to fill board
@@ -42,7 +43,7 @@ public class EasySudokuBoard implements SudokuBoard{
             return fillBoard(row + 1, 0);
         }
 
-        // If the current cell is already filled, move to the next cell
+        // If the current col is already filled, move to the next col
         if (board[row][col].getValue() != 0) {
             return fillBoard(row, col + 1);
         }
@@ -52,14 +53,14 @@ public class EasySudokuBoard implements SudokuBoard{
         for (int i = 1; i <= size; i++) {
             int value = rand.nextInt(size) + 1;
             if (isInputValid(row, col, value)) {
-                board[row][col] = new Cell(value);
+                board[row][col] = getPrototype(value);
                 if (fillBoard(row, col + 1)) {
                     return true;
                 }
             }
         }
         // If no value worked, reset the cell and backtrack
-        board[row][col] = new Cell(0);
+        board[row][col] = getPrototype(0);
         return false;
     }
     
@@ -205,10 +206,31 @@ public class EasySudokuBoard implements SudokuBoard{
     }
 
     public void createSnapshot(){
-        this.initialState = new Memento(board);
+        this.initialState = new BoardMemento(board);
     }
 
     public void restore(){
-        board = this.initialState.getMemento();
+        // Retrieve the previous state of the board
+        Cell[][] previousState = initialState.getMemento();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                this.board[i][j] = previousState[i][j].clone();
+            }
+        }
+    }
+
+    /** Gets a prototype of a Cell with the given value, or creates a new prototype */
+    private Cell getPrototype(int value) {
+        if (prototypes == null) {
+            prototypes = new Cell[size];
+            prototypes[0] = new Cell(0);
+        }
+        if(value == 0){
+            return prototypes[0].clone();
+        }
+        if (prototypes[value - 1] == null) {
+            prototypes[value - 1] = new Cell(value);
+        }
+        return prototypes[value - 1].clone();
     }
 }
