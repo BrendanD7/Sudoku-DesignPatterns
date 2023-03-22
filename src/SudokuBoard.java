@@ -1,7 +1,26 @@
+/** Interface class which represents a SudokuBoard object
+ *  Used to create SudokuBoards of varying size and difficulty
+ */
 public interface SudokuBoard{
+    /** Creates a SudokuBoard object */
     public void buildBoard();
+
+    /** Get the size of the sudoku board 
+     * @return The size of the board
+    */
     public int getSize();
+
+    /** Get the value of a specific cell 
+     * @param row The row of the cell
+     * @param col The col of the cell
+    */
     public int getCellValue(int row, int col);
+
+    /** Retrieve a specific cell
+     * @param row The row of the cell
+     * @param col The col of the cell
+     * @return The cell at the given row and col
+     */
     public Cell getCell(int row, int col);
     public int getCellSize();
 
@@ -70,6 +89,10 @@ public interface SudokuBoard{
         // if not, input is valid
         return true;
     }
+
+    /** Method to create a snapshot of the SudokuBoard for the Memento Pattern */
     public void createSnapshot();
+
+    /** Method to restore the state of the SudokuBoard, uses the snapshot from createSnapshot */
     public void restore();
 }
