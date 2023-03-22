@@ -15,6 +15,7 @@ public class ColumnIterator implements Iterator<Cell> {
     /**
      * Returns true if there are more values in the iterator
      */
+    @Override
     public boolean hasNext() {
         return curRow < maxRow;
     }
@@ -23,6 +24,7 @@ public class ColumnIterator implements Iterator<Cell> {
     /**
      * Returns the next cell if it exists
      */
+    @Override
     public Cell next() throws NoSuchElementException {
         if (hasNext()){
             Cell next = board.getCell(curRow, col);

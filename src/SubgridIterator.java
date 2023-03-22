@@ -22,6 +22,7 @@ public class SubgridIterator implements Iterator<Cell> {
     /**
      * Returns true if there are more values in the iterator
      */
+    @Override
     public boolean hasNext() {
         return hasNextCol() || hasNextRow();
     }
@@ -29,6 +30,7 @@ public class SubgridIterator implements Iterator<Cell> {
     /**
      * Returns the next cell if it exists
      */
+    @Override
     public Cell next() throws NoSuchElementException {
         // check if we need to increment the row
         if (hasNextRow() && !hasNextCol()) {
