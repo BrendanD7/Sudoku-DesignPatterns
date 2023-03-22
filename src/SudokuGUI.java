@@ -91,11 +91,16 @@ public class SudokuGUI extends JFrame implements ActionListener {
             }
         // Reset the Board
         } else if (e.getSource() == resetButton) {
+            sudokuBoard.restore();
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    if (sudokuCells[row][col].isEditable()) {
+                    String value = sudokuBoard.getCellValue(row,col) + "";
+                    if(value.equals("0")){
                         sudokuCells[row][col].setText("");
-                    } 
+                    }
+                    else{
+                        sudokuCells[row][col].setText(value);
+                    }
                 }
             }
         }
