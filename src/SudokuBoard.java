@@ -70,4 +70,6 @@ public interface SudokuBoard{
         // if not, input is valid
         return true;
     }
+    public void createSnapshot();
+    public void restore();
 }
