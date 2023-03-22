@@ -78,7 +78,7 @@ public interface SudokuBoard{
         RowIterator rowIt = new RowIterator(row, this);
         ColumnIterator colIt = new ColumnIterator(col, this);
         // convert row and column numbers to subgrid number
-        int subgrid = (col / getCellSize()) + (getCellSize() * (row / getCellSize()));
+        int subgrid = (col / getCellSize()) + row - (row % getCellSize());
         SubgridIterator subIt = new SubgridIterator(subgrid, this);
 
         // check if input is already in row, column, or subgrid
