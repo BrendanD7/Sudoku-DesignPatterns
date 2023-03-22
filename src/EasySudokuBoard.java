@@ -7,7 +7,7 @@ public class EasySudokuBoard implements SudokuBoard{
     private Cell[][] board;
     private int size;
     private int cellSize;
-    private BoardMemento initialState;
+    private BoardCaretaker initialState = new BoardCaretaker();
 
     /** Constructor to build a sudoku board
     * @param size The size of the board 
@@ -121,13 +121,13 @@ public class EasySudokuBoard implements SudokuBoard{
 
     /** Memento method to create a snapshot of the board */
     public void createSnapshot(){
-        this.initialState = new BoardMemento(board);
+        this.initialState.setState(new BoardMemento(board));
     }
 
     /** Restores the board based on the snapshot */
     public void restore(){
         // Retrieve the previous state of the board
-        Cell[][] previousState = initialState.getMemento();
+        Cell[][] previousState = initialState.getState().getMemento();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 this.board[i][j] = previousState[i][j].clone();
