@@ -1,15 +1,17 @@
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.Collections;
+/** Represents a Hard SudokuBoard of varying size */
+import java.util.*;
 
 public class HardSudokuBoard implements SudokuBoard{
+    /** Instance Variables */
     private Cell[] prototypes;
     private Cell[][] board;
     private int size;
     private int cellSize;
     private BoardMemento initialState;
 
-    /** Constructor to build a sudoku board */
+    /** Constructor to build a sudoku board 
+     *  @param size The size of the board 
+    */
     public HardSudokuBoard(int size) {
         this.size = size;
         // Board size
@@ -21,7 +23,7 @@ public class HardSudokuBoard implements SudokuBoard{
         buildBoard();
     }
 
-    /** Builds a sudoku board */
+     /** Builds a sudoku board by completing a board, then removing elements */
     public void buildBoard() {
         // Initialize board to 0s
         for (int row = 0; row < size; row++) {
@@ -35,7 +37,10 @@ public class HardSudokuBoard implements SudokuBoard{
         removeElements();
     }
 
-    /** Uses backtracking to fill the board */
+    
+    /** Recurvise method that uses backtracking to fill a SudokuBoard with a valid puzzle
+     * @return True once complete, false to backtrack
+    */
     private boolean fillBoard(int row, int col) {
         // If we have filled the entire board, we are done
         if (row == size) {
@@ -82,30 +87,44 @@ public class HardSudokuBoard implements SudokuBoard{
         createSnapshot();
     }
 
-    /** Get Size of Board */
+     /** Get Size of Board
+     * @return The size of the SudokuBoard
+     */
     public int getSize() {
         return size;
     }
     
-    /** Get Size of Sub-Grids */
+    /** Get Size of Sub-Grids
+     * @return Sub Grid size
+     */
     public int getCellSize() {
         return cellSize;
     }
     
-    /** Get Specific cells */
+    /** Get Specific cells
+     * @param row The row of the cell
+     * @param col The col of the cell
+     * @return The cell at the given row and col
+     */
     public Cell getCell(int row, int col){
         return board[row][col];
     }
     
-    //* Get Specific Cells Values */
+    /** Get Specific cells value
+     * @param row The row of the cell
+     * @param col The col of the cell
+     * @return The value of the cell at the given row and col
+     */
     public int getCellValue(int row, int col){
         return board[row][col].getValue();
     }
 
+    /** Memento method to create a snapshot of the board */
     public void createSnapshot(){
         this.initialState = new BoardMemento(board);
     }
 
+    /** Restores the board based on the snapshot */
     public void restore(){
         // Retrieve the previous state of the board
         Cell[][] previousState = initialState.getMemento();
@@ -116,7 +135,10 @@ public class HardSudokuBoard implements SudokuBoard{
         }
     }
 
-    /** Gets a prototype of a Cell with the given value, or creates a new prototype */
+    /** Gets a prototype of a Cell with the given value, or creates a new prototype 
+    * @param value The value needed for a cell
+    * @return A cell that is either a clone, or a new cell
+    */
     private Cell getPrototype(int value) {
         if (prototypes == null) {
             prototypes = new Cell[size];

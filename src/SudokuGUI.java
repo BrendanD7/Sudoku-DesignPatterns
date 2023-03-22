@@ -1,3 +1,4 @@
+/** Swing GUI to Visualize the Sudoku game */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -70,7 +71,11 @@ public class SudokuGUI extends JFrame implements ActionListener {
     }
     
 
+    /** Event handler for buttons
+     * @param e The event to be handled
+     */
     public void actionPerformed(ActionEvent e) {
+        // Check button clicked
         if (e.getSource() == checkButton) {           
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
@@ -83,9 +88,11 @@ public class SudokuGUI extends JFrame implements ActionListener {
                     }
                 }
             }
+            // Valid board
             if (sudokuBoard.isBoardValid()) {
                 JOptionPane.showMessageDialog(this, "Sudoku is valid!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } 
+            // Invalid board
             else {
                 JOptionPane.showMessageDialog(this, "Sudoku is invalid.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -104,12 +111,14 @@ public class SudokuGUI extends JFrame implements ActionListener {
                 }
             }
         }
+        // Create new board
         else if(e.getSource() == restartButton){
             dispose();
             openScreen();
         }
     }
     
+    /** Opening screen for the game to choose difficulty and size */
     public static void openScreen() {
         JFrame frame = new JFrame("Sudoku");
         JPanel panel = new JPanel(new BorderLayout());
@@ -188,8 +197,9 @@ public class SudokuGUI extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
     
-
+    /** Run the game */
     public static void main(String[] args) {
+        if(args.length > 0){System.exit(0);}
         openScreen();
     }
 }
