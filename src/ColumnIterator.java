@@ -1,7 +1,6 @@
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ColumnIterator implements Iterator<Cell> {
+public class ColumnIterator extends CellIterator {
     private SudokuBoard board;
     private int col, curRow, maxRow;
 

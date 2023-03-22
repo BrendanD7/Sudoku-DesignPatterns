@@ -14,7 +14,7 @@ The Iterator design pattern is a behavioural pattern that allows elements of an 
 ## How is it used in the Sudoku Program?
 
 In the Sudoku program, the iterator pattern is used to traverse the rows, columns, and sub-grids of the sudoku board as these are common operations when checking if the board is valid. By encapsulating the traversal logic inside of the iterators, the methods that need to traverse the board can be simplified to increase readability.
-The RowIterator, ColumnIterator, and SubgridIterator classes use Java's built-in Iterator interface to ensure that the iterators function as users expect.
+The RowIterator, ColumnIterator, and SubgridIterator classes extend the CellIterator abstract class which implements Java's built-in Iterator interface to ensure that the iterators function as users expect while also ensuring that they can be used interchangably to further simplify the validation process.
 
 ## Why have we used it?
 

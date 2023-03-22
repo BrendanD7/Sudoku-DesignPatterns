@@ -5,62 +5,34 @@ public interface SudokuBoard{
     public Cell getCell(int row, int col);
     public int getCellSize();
 
-    /** Checks if whole board is valid */
+    /**
+     * Checks if the whole board is valid
+     * @return - boolean indicating if the board is valid
+     */
     default boolean isBoardValid() {
         // returns false if any row, column, or subgrid is invalid
         for(int i = 0; i < getSize(); i++) {
-            if (!isRowValid(i) || !isColValid(i) || !isSubGridValid(i)) {
+            RowIterator rowIt = new RowIterator(i, this);
+            ColumnIterator colIt = new ColumnIterator(i, this);
+            SubgridIterator subIt = new SubgridIterator(i, this);
+
+            if (!isIteratorValid(rowIt) || !isIteratorValid(colIt) || !isIteratorValid(subIt)) {
                 return false;
             }
         }
         return true;
     }
 
-    /** Checks if given row is valid */
-    private boolean isRowValid(int row){
-        RowIterator rowIt = new RowIterator(row, this);
+    /**
+     * Checks if the given CellIterator is valid.
+     * @param iterator - the CellIterator to check
+     * @return - boolean indicating the validity of the CellIterator
+     */
+    private boolean isIteratorValid(CellIterator iterator) {
         boolean[] visited = new boolean[getSize()];
 
-        while (rowIt.hasNext()) {
-            int value = rowIt.next().getValue();
-            if (value != 0) {
-                if (visited[value-1]) {
-                    return false;
-                }
-
-                visited[value-1] = true;
-            }
-        }
-
-        return true;
-    }
-    
-    /** Checks if given column is valid */
-    private boolean isColValid(int col){
-        ColumnIterator colIt = new ColumnIterator(col, this);
-        boolean[] visited = new boolean[getSize()];
-
-        while (colIt.hasNext()) {
-            int value = colIt.next().getValue();
-            if (value != 0) {
-                if (visited[value-1]) {
-                    return false;
-                }
-
-                visited[value-1] = true;
-            }
-        }
-        
-        return true;
-    }
-
-    /** Checks if given subgrid is valid */
-    private boolean isSubGridValid(int subgrid) {
-        SubgridIterator subgridIt = new SubgridIterator(subgrid, this);
-        boolean[] visited = new boolean[getSize()];
-
-        while (subgridIt.hasNext()) {
-            int value = subgridIt.next().getValue();
+        while (iterator.hasNext()) {
+            int value = iterator.next().getValue();
             if (value != 0) {
                 if (visited[value-1]) {
                     return false;
@@ -73,7 +45,13 @@ public interface SudokuBoard{
         return true;
     }
 
-    /** Check if given input is valid */
+    /**
+     * Checks if the given input is valid
+     * @param row - the row of the input to check
+     * @param col - the column of the input to check
+     * @param input - the input number to check
+     * @return - boolean indicating if the input is valid
+     */
     default boolean isInputValid(int row, int col, int input) {
         RowIterator rowIt = new RowIterator(row, this);
         ColumnIterator colIt = new ColumnIterator(col, this);
