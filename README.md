@@ -55,9 +55,9 @@ Each of these patterns are detailed in their own documents, as seen in the links
 # Individual Reports
 - [Factory Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/FactoryPattern.md).
 - [Singleton Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Singleton.md).
-- Memento
-- Prototype
-- Iterator
+- [Memento Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Memento.md)
+- [Prototype Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Prototype.md)
+- [Iterator Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Iterator.md)
 - Decorator
 
 # UML Diagram
