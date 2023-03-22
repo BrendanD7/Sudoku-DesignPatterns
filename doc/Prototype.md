@@ -114,3 +114,4 @@ private Cell[] prototypes;
 We have applied the prototype design pattern to create cell objects, as creating new objects is a process that can take a long time when lots of them are to be generated. This can especially be seen in the 16x16 board where 256 cells are to be created. The use of prototyping allows for that board to need to only create 16 unique cells, the remaining 240 could then be cloned from those values.
 
 # UML
+![Prototype UML](../data/Prototype-UML.png)
