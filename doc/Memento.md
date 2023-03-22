@@ -98,3 +98,4 @@ createSnapshot();
 The memento was implemented to allow restoration to the intial state of the board without violating encapsulation. Before using the memento pattern the selections were cleared by resetting all of the non-editable values in the GUI with 0s, but the board itself was not changed. Meaning that pressing the submit button again would cause the game to read the board that was last checked for validity. The memento has been used to store an initial, unchangeable reference to the initial state of the board, and allow convenient access to the restore method to use in the reset selection event.
 
 # UML
+![Prototype UML](../data/Prototype-UML.png)
