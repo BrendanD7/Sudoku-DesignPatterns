@@ -42,6 +42,8 @@ Below is an example of the screen users see when they first enter the main game
 <img src="../data/MainGame.png" width="300" height="300">
 
 # What patterns have we applied?
+In the game we have applied the following Design Patterns: Factory, Singleton, Memento, Prototype, Iterator, Decorator.
+Each of these patterns are detailed in their own documents, as seen in the links below.
 
 # Individual Reports
 - [Factory Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/FactoryPattern.md).
