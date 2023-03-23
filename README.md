@@ -5,7 +5,7 @@
 - Francis Radford
 - Paige Corbyn
 - Grace Kiely
-- Aradhan Furtado
+- Aradhan Furtado 3698908
 
 # What is our project?
 This project simulates a game of Sudoku with varying difficulty and board sizes. The game is programmed using the Java programming language, and makes use of the Java Swing GUI toolkit to develop a GUI for the game. 
