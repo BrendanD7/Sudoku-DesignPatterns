@@ -58,6 +58,6 @@ Each of these patterns are detailed in their own documents, as seen in the links
 - [Memento Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Memento.md)
 - [Prototype Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Prototype.md)
 - [Iterator Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Iterator.md)
-- Decorator
+- [Decorator Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Decorator.md)
 
 # UML Diagram
