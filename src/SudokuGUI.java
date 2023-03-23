@@ -40,6 +40,20 @@ public class SudokuGUI extends JFrame implements ActionListener {
                             cell.setText("" + cellValue);
                             cell.setEditable(false);
                         }
+                        // Decorate user-selected cells with yellow background
+                        if (cell.isEditable()) {
+                            BackgroundCellDecorator userBGDecorator = new BackgroundCellDecorator(new Color(211, 245, 187,255));
+                            ForegroundCellDecorator userFGDecorator = new ForegroundCellDecorator(new Color(66, 135, 26, 255));
+                            userBGDecorator.decorate(cell);
+                            userFGDecorator.decorate(cell);
+                        }
+                        // Decorate software-generated cells with gray foreground
+                        else {
+                            BackgroundCellDecorator givenBGDecorator = new BackgroundCellDecorator(new Color(171, 230, 133, 255));
+                            ForegroundCellDecorator givenFGDecorator = new ForegroundCellDecorator(new Color(48, 96, 19, 255));
+                            givenBGDecorator.decorate(cell);
+                            givenFGDecorator.decorate(cell);
+                        }
                         sudokuCells[row][col] = cell;
                         subgrid.add(cell); // Add cell to current subgrid panel
                     }
