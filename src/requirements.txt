@@ -1,3 +1,3 @@
-# Required Software to run this project
+Required Software to run this project
 - JDK and JRE 1.2 or higher
 - Any terminal (Powershell, Linux Terminal)
