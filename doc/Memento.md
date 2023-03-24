@@ -5,18 +5,18 @@ The memento pattern is a behavioral design pattern that allows an object to capt
 
 ### **Benefits to the Memento Design Pattern:**
 - Produce snapshots of the object without violating encapsulation
-- Restore states of an object
+- Restore the states of an object
  
 ## How is it used in the Sudoku Program?
-The memento design pattern is used to store the initial state of the board that the player would see once they start the game. This state does not change unless a new game is started, and is used to reset the board to the initial state when the player clicks the reset selections button. 
+The memento design pattern is used to store the initial state of the board that the player would see once they start the game. This state does not change unless a new game is started and is used to reset the board to the initial state when the player clicks the reset selections button. 
 
 When the board is first created the state is stored at the end of the removeElements method, as this is when the final board the user will play using is prepared.  This is done by calling the createSnapshot method in the SudokuBoard class, which creates a new memento of the initial state of the board and stores it in the caretaker class.
 
-Once the reset selections button is clicked, then the restore method from the SudokuBoard class is called, which will restore the board to its initial state by retrieving the memento from the caretaker, and the initial array from the memento. Once retrieved, it is used to restore all the original contents of the board, which include the computer generated values, while removing all player inputs.
+Once the reset selections button is clicked, then the restore method from the SudokuBoard class is called, which will restore the board to its initial state by retrieving the memento from the caretaker, and the initial array from the memento. Once retrieved, it is used to restore all the original contents of the board, which include the computer-generated values, while removing all player inputs.
 
 ### **Memento Class Code**
 ```java
-/** Memento class to store initial state of the board, used for Reset in the GUI */
+/** Memento class to store the initial state of the board, used for Reset in the GUI */
 public class BoardMemento {
     /** Instance Varialbes */
     private final Cell[][] cellMemento;
@@ -95,7 +95,7 @@ createSnapshot();
 ```
 
 ## Why have we used it?
-The memento was implemented to allow restoration to the intial state of the board without violating encapsulation. Before using the memento pattern the selections were cleared by resetting all of the non-editable values in the GUI with 0s, but the board itself was not changed. Meaning that pressing the submit button again would cause the game to read the board that was last checked for validity. The memento has been used to store an initial, unchangeable reference to the initial state of the board, and allow convenient access to the restore method to use in the reset selection event.
+The memento was implemented to allow restoration to the initial state of the board without violating encapsulation. Before using the memento pattern the selections were cleared by resetting all of the non-editable values in the GUI with 0s, but the board itself was not changed. Meaning that pressing the submit button again would cause the game to read the board that was last checked for validity. The memento has been used to store an initial, unchangeable reference to the initial state of the board, and allow convenient access to the restore method to use in the reset selection event.
 
 # UML
 ![Memento UML](../data/Memento-UML.png)
