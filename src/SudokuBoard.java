@@ -22,6 +22,10 @@ public interface SudokuBoard{
      * @return The cell at the given row and col
      */
     public Cell getCell(int row, int col);
+
+    /** Get the size of the sub-grids
+     * @return Subgrid size
+     */
     public int getCellSize();
 
     /**
