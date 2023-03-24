@@ -13,7 +13,7 @@ This project simulates a game of Sudoku with varying difficulty and board sizes.
 ## How to play Sudoku
 The game operates under standard Sudoku rules, the goal is to complete the grid with each cell filled with numbers from 1 to the size of the board, for example, a 4x4 board would allow inputs of 1, 2, 3, and 4. Then each row must contain all four of those numbers, without any repetition, this applies as well to all columns in the board. Then the final requirement is that each sub-grid within the game also does not contain repeated numbers. For example, each sub-grid consists of a size that is the square root of the board size (So for a 4x4 board the sub-grids are 2x2). 
 The game will initially generate random values to place on the board, the number of values remaining on the board depends on the difficulty, where higher difficulties have fewer values given to the board from the start.
-Below is an example of a completed Sudoku board, note that all of the above requirements are met in the game, the grey squares are computer-generated values, while the white squares were filled by a player.
+Below is an example of a completed Sudoku board, note that all of the above requirements are met in the game, the dark green squares are computer-generated values, while the light green squares were filled by a player.
 
 <img src="/data/CompletedGame.png"  width="300" height="300">
 
