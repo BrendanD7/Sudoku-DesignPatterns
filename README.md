@@ -61,3 +61,4 @@ Each of these patterns are detailed in their own documents, as seen in the links
 - [Decorator Pattern](https://github.com/SWE4403-Project/SWE4403-Project-Repo/blob/main/doc/Decorator.md)
 
 # UML Diagram
+![Sudoku UML](/data/Sudoku-UML.png)
