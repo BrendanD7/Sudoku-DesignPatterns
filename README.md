@@ -4,7 +4,7 @@
 - Brendan Doucette 3694084
 - Francis Radford 3698916
 - Paige Corbyn 3422365
-- Grace Kiely
+- Grace Kiely 3574723
 - Aradhan Furtado 3698908
 
 # What is our project?
