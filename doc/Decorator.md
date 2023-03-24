@@ -1,16 +1,16 @@
 # Decorator Design Pattern for Sudoku
 
 ## What is the Decorator Design Pattern?
-The decorator design pattern is a structural design pattern that allows behavior to be added to an individual object dynamically, without impacting the behavior of similar objects. 
+The decorator design pattern is a structural design pattern that allows new behaviors or functionality to be added to an individual object dynamically, without impacting the behavior of similar objects. This is done by wrapping objects within "Decorators", which add the requested functionality/behaviors. The decorator pattern is useful to add non-required functionality in the future, such as visual differences in the way a GUI looks.
 
 ### **Benefits to the Decorator Design Pattern:**
-- Open-Closed Principle: New behaviors can be added without further modification
+- Open-Closed Principle: New behaviors/functionality can be added without further modification
 - Single Responsibility: Divide behaviors between classes
  - Increased modularity 
  
 ## How is it used in the Sudoku Program?
 In the Sudoku program the decorator is used to extend the functionality of the GUI by allowing for cells to be coloured. 
-A base decorator is defined in the CellDecorator class, which defines a method to colour cells.
+A base decorator is defined in the CellDecorator interface, which defines a method to colour cells.
 
 ### **CellDecorator.java**
 ```java
@@ -112,8 +112,9 @@ else {
     givenFGDecorator.colour(cell);
 }
 ```
+
 ## Why have we used it?
-We have applied the Decorator pattern as it allows for the GUI program to have increased functionality, while also dividing the functionality into a new class which could be easily expanded to include other types of decorating to apply to the cells, such as giving them borders, or shadows. This could allow for the GUI to be expanded visually in the future, with concepts such as themes or allowing the user to set their own colour schemes.
+We have applied the Decorator pattern as it allows for the GUI program to have increased functionality, while also dividing the functionality into a new class which could be easily expanded to include other types of decorating to apply to the cells, such as giving them borders, or shadows. This could allow for the GUI to be expanded visually in the future, with concepts such as themes or allowing the user to set their own colour schemes. This increased modularity allows the Sudoku Game to be expandable in the future with many new features, which was an overall goal of the design.
 
 # UML
 ![Decorator UML](../data/Decorator-UML.png)
