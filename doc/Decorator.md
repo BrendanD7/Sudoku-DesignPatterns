@@ -30,7 +30,7 @@ public interface CellDecorator {
 
 ```
 
-There are two concrete decorators defined to colour certain types of cells, one is used to colour foreground cells, and another colour background cells. These can be seen in the ForegroundCellDecorator.java and BackgroundCellDecorator.java. These classes override the colour method from the base decorator and set the colour of the cells based on what is indicated in the GUI.
+There are two concrete decorators defined to colour certain types of cells, one is used to colour the cell's foreground, and another colours the cell's background. These can be seen in the ForegroundCellDecorator.java and BackgroundCellDecorator.java. These classes override the colour method from the base decorator and set the colour of the cells based on what is indicated in the GUI.
 
 ### **ForegroundCellDecorator.java**
 ```java
