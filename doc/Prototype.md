@@ -1,7 +1,7 @@
 # Prototype Design Pattern for Sudoku
 
 ## What is the Prototype Design Pattern?
-The prototype design pattern is a creational design pattern that allows for the creation of objects by closing existing ones, rather than reconstruction using a constructor. This allows for duplicate objects to be created as clones, removing the need to instantiate each new object individually. This pattern is useful in sitations where the creation of objects is often replicated several times, cloning instead of creating new objects can increase performance.
+The prototype design pattern is a creational design pattern that allows for the creation of objects by closing existing ones, rather than reconstruction using a constructor. This allows for duplicate objects to be created as clones, removing the need to instantiate each new object individually. This pattern is useful in situations where the creation of objects is often replicated several times, cloning instead of creating new objects can increase performance.
 
 ### **Benefits to the Prototype Design Pattern:**
 - Remove repeated initialization code
@@ -15,7 +15,7 @@ public interface CellPrototype {
 }
 ```
 
-The cell class implements the CellProtoype class, and implements the clone method as follows
+The cell class implements the CellProtoype class and implements the clone method as follows
 ```java
 public class Cell implements CellPrototype{
     private int value;
