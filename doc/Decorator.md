@@ -9,7 +9,7 @@ The decorator design pattern is a structural design pattern that allows new beha
  - Increased modularity 
  
 ## How is it used in the Sudoku Program?
-In the Sudoku program the decorator is used to extend the functionality of the GUI by allowing for cells to be coloured. 
+In the Sudoku program, the decorator is used to extend the functionality of the GUI by allowing for cells to be coloured. 
 A base decorator is defined in the CellDecorator interface, which defines a method to colour cells.
 
 ### **CellDecorator.java**
@@ -30,7 +30,7 @@ public interface CellDecorator {
 
 ```
 
-There are two concrete decorators defined to colour certain types of cells, one is used to colour foreground cells, and another colour background cells. These can be seen in the ForegroundCellDecorator.java and BackgroundCellDecorator.java. These classes ovverride the colour method from the base decorator and set the colour of the cells based on what is indicated in the GUI.
+There are two concrete decorators defined to colour certain types of cells, one is used to colour foreground cells, and another colour background cells. These can be seen in the ForegroundCellDecorator.java and BackgroundCellDecorator.java. These classes override the colour method from the base decorator and set the colour of the cells based on what is indicated in the GUI.
 
 ### **ForegroundCellDecorator.java**
 ```java
@@ -41,13 +41,13 @@ import java.awt.*;
 public class ForegroundCellDecorator implements CellDecorator {
 
     /**
-     *Instance variable for the colour to decorate foreground
+     *Instance variable for the colour to decorate the foreground
      */
     private Color colour;
 
     /**
      * Constructor to build the ForegroundCell Decorator
-     * @param colour colour preferred for foreground of the cell
+     * @param colour colour preferred for the foreground of the cell
      */
     public ForegroundCellDecorator(Color colour) {
         this.colour = colour;
@@ -72,13 +72,13 @@ import java.awt.*;
 public class BackgroundCellDecorator implements CellDecorator {
 
     /**
-     *Instance variable for the colour to decorate background
+     *Instance variable for the colour to decorate the background
      */
     private Color colour;
 
     /**
      * Constructor to build the BackgroundCell Decorator
-     * @param colour colour preferred for background of the cell
+     * @param colour colour preferred for the background of the cell
      */
     public BackgroundCellDecorator(Color colour) {
         this.colour = colour;
