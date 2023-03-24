@@ -93,7 +93,7 @@ public class SudokuGUI extends JFrame implements ActionListener {
         if (e.getSource() == checkButton) {           
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    if(Integer.parseInt(sudokuCells[row][col].getText()) > sudokuBoard.getSize() || Integer.parseInt(sudokuCells[row][col].getText()) <= sudokuBoard.getSize()){
+                    if(Integer.parseInt(sudokuCells[row][col].getText()) > sudokuBoard.getSize() || Integer.parseInt(sudokuCells[row][col].getText()) <= 0){
                         JOptionPane.showMessageDialog(this, "Invalid Inputs.", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
