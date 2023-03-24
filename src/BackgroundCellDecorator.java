@@ -19,9 +19,9 @@ public class BackgroundCellDecorator implements CellDecorator {
 
     /**
      * Decorates the specified cell by modifying the background colour
-     * @param cell
+     * @param cell The cell to be coloured
      */
-    public void decorate(JTextField cell) {
+    public void colour(JTextField cell) {
         cell.setBackground(colour);
     }
 }

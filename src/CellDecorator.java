@@ -7,7 +7,7 @@ public interface CellDecorator {
 
     /**
      * Decorates the cell in the given parameter
-     * @param cell
+     * @param cell The cell to be decorated
      */
-    void decorate(JTextField cell);
+    void colour(JTextField cell);
 }

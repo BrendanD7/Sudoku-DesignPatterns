@@ -72,6 +72,9 @@ public interface SudokuBoard{
      * @return - boolean indicating if the input is valid
      */
     default boolean isInputValid(int row, int col, int input) {
+        if(input > getSize() || input <= 0){
+            return false;
+        }
         RowIterator rowIt = new RowIterator(row, this);
         ColumnIterator colIt = new ColumnIterator(col, this);
         // convert row and column numbers to subgrid number

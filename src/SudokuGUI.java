@@ -40,19 +40,19 @@ public class SudokuGUI extends JFrame implements ActionListener {
                             cell.setText("" + cellValue);
                             cell.setEditable(false);
                         }
-                        // Decorate user-selected cells with yellow background
+                        // Decorate user-selected cells
                         if (cell.isEditable()) {
                             BackgroundCellDecorator userBGDecorator = new BackgroundCellDecorator(new Color(211, 245, 187,255));
                             ForegroundCellDecorator userFGDecorator = new ForegroundCellDecorator(new Color(66, 135, 26, 255));
-                            userBGDecorator.decorate(cell);
-                            userFGDecorator.decorate(cell);
+                            userBGDecorator.colour(cell);
+                            userFGDecorator.colour(cell);
                         }
-                        // Decorate software-generated cells with gray foreground
+                        // Decorate software-generated cells
                         else {
                             BackgroundCellDecorator givenBGDecorator = new BackgroundCellDecorator(new Color(171, 230, 133, 255));
                             ForegroundCellDecorator givenFGDecorator = new ForegroundCellDecorator(new Color(48, 96, 19, 255));
-                            givenBGDecorator.decorate(cell);
-                            givenFGDecorator.decorate(cell);
+                            givenBGDecorator.colour(cell);
+                            givenFGDecorator.colour(cell);
                         }
                         sudokuCells[row][col] = cell;
                         subgrid.add(cell); // Add cell to current subgrid panel
@@ -93,7 +93,11 @@ public class SudokuGUI extends JFrame implements ActionListener {
         if (e.getSource() == checkButton) {           
             for (int row = 0; row < sudokuBoard.getSize(); row++) {
                 for (int col = 0; col < sudokuBoard.getSize(); col++) {
-                    if(!sudokuCells[row][col].getText().equals("")){
+                    if(Integer.parseInt(sudokuCells[row][col].getText()) > sudokuBoard.getSize() || Integer.parseInt(sudokuCells[row][col].getText()) <= sudokuBoard.getSize()){
+                        JOptionPane.showMessageDialog(this, "Invalid Inputs.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    else if(!sudokuCells[row][col].getText().equals("")){
                         sudokuBoard.getCell(row,col).setValue(Integer.parseInt(sudokuCells[row][col].getText()));
                     }
                     else{
