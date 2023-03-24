@@ -12,7 +12,7 @@ The decorator design pattern is a structural design pattern that allows behavior
 In the Sudoku program the decorator is used to extend the functionality of the GUI by allowing for cells to be coloured. 
 A base decorator is defined in the CellDecorator class, which defines a method to colour cells.
 
-###**CellDecorator.java**
+### **CellDecorator.java**
 ```java
 import javax.swing.*;
 
@@ -32,7 +32,7 @@ public interface CellDecorator {
 
 There are two concrete decorators defined to colour certain types of cells, one is used to colour foreground cells, and another colour background cells. These can be seen in the ForegroundCellDecorator.java and BackgroundCellDecorator.java. These classes ovverride the colour method from the base decorator and set the colour of the cells based on what is indicated in the GUI.
 
-###**ForegroundCellDecorator.java**
+### **ForegroundCellDecorator.java**
 ```java
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class ForegroundCellDecorator implements CellDecorator {
 }
 ```
 
-###**BackgroundCellDecorator.java**
+### **BackgroundCellDecorator.java**
 ```java
 import javax.swing.*;
 import java.awt.*;
@@ -95,7 +95,7 @@ public class BackgroundCellDecorator implements CellDecorator {
 
 ```
 
-###**Usage within the GUI**
+### **Usage within the GUI**
 ```java
  // Decorate user-selected cells
 if (cell.isEditable()) {
