@@ -3,7 +3,7 @@
 # Group Members
 - Brendan Doucette 3694084
 - Francis Radford
-- Paige Corbyn
+- Paige Corbyn 3422365
 - Grace Kiely
 - Aradhan Furtado 3698908
 
